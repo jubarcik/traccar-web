@@ -143,7 +143,10 @@ const MainPage = () => {
             <BottomMenu />
           </div>
         )}
+
+
       </div>
+
       <EventsDrawer open={eventsOpen} onClose={() => setEventsOpen(false)} />
       {selectedDeviceId && (
         <StatusCard
@@ -153,7 +156,9 @@ const MainPage = () => {
           desktopPadding={theme.dimensions.drawerWidthDesktop}
         />
       )}
+
     </div>
+
   );
 };
 

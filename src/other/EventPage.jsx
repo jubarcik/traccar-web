@@ -87,6 +87,7 @@ const EventPage = () => {
           <Typography variant="h6">{event && formatType(event)}</Typography>
         </Toolbar>
       </AppBar>
+
       <div className={classes.mapContainer}>
         <MapView>
           <MapGeofence />

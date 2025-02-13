@@ -38,7 +38,7 @@ const LogsPage = () => {
   };
 
   return (
-    <PageLayout menu={<ReportsMenu />} breadcrumbs={['reportTitle', 'sharedLogs']}>
+    <PageLayout menu={<ReportsMenu />} breadcrumbs={['reportTitle', 'logTitle']}>
       <Table>
         <TableHead>
           <TableRow>

@@ -28,28 +28,28 @@ import truckSvg from '../../resources/images/icon/truck.svg';
 import vanSvg from '../../resources/images/icon/van.svg';
 
 export const mapIcons = {
+  default: defaultSvg,
   animal: animalSvg,
   bicycle: bicycleSvg,
-  boat: boatSvg,
+  motorcycle: motorcycleSvg,
   bus: busSvg,
   car: carSvg,
   camper: camperSvg,
   crane: craneSvg,
-  default: defaultSvg,
-  finish: finishSvg,
+  boat: boatSvg,
   helicopter: helicopterSvg,
-  motorcycle: motorcycleSvg,
   person: personSvg,
   plane: planeSvg,
   scooter: scooterSvg,
   ship: shipSvg,
-  start: startSvg,
   tractor: tractorSvg,
   trailer: trailerSvg,
   train: trainSvg,
   tram: tramSvg,
   truck: truckSvg,
   van: vanSvg,
+  start: startSvg,
+  finish: finishSvg,
 };
 
 export const mapIconKey = (category) => {

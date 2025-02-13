@@ -17,6 +17,7 @@ import GroupPage from './settings/GroupPage';
 import PositionPage from './other/PositionPage';
 import NetworkPage from './other/NetworkPage';
 import EventReportPage from './reports/EventReportPage';
+import DailyEventsReportPage from './reports/DailyEventsReportPage';
 import ReplayPage from './other/ReplayPage';
 import TripReportPage from './reports/TripReportPage';
 import StopReportPage from './reports/StopReportPage';
@@ -58,7 +59,6 @@ import SharePage from './settings/SharePage';
 import AnnouncementPage from './settings/AnnouncementPage';
 import EmulatorPage from './other/EmulatorPage';
 import Loader from './common/components/Loader';
-import { generateLoginToken } from './common/components/NativeInterface';
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -89,11 +89,6 @@ const Navigation = () => {
     } else if (query.get('eventId')) {
       const eventId = parseInt(query.get('eventId'), 10);
       navigate(`/event/${eventId}`);
-    } else if (query.get('openid')) {
-      if (query.get('openid') === 'success') {
-        generateLoginToken();
-      }
-      navigate('/');
     } else {
       setRedirectsHandled(true);
     }
@@ -167,6 +162,7 @@ const Navigation = () => {
           <Route path="route" element={<RouteReportPage />} />
           <Route path="stop" element={<StopReportPage />} />
           <Route path="summary" element={<SummaryReportPage />} />
+          <Route path="dailyevents" element={<DailyEventsReportPage />} />
           <Route path="trip" element={<TripReportPage />} />
           <Route path="scheduled" element={<ScheduledPage />} />
           <Route path="statistics" element={<StatisticsPage />} />

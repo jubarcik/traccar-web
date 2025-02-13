@@ -56,6 +56,9 @@ Ext.define('Traccar.model.Server', {
         name: 'zoom',
         type: 'int'
     }, {
+        name: 'twelveHourFormat',
+        type: 'boolean'
+    }, {
         name: 'forceSettings',
         type: 'boolean'
     }, {

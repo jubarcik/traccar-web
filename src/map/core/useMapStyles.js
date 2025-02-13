@@ -40,24 +40,7 @@ export default () => {
   const customMapUrl = useSelector((state) => state.session.server.mapUrl);
 
   return useMemo(() => [
-    {
-      id: 'openFreeMap',
-      title: t('mapOpenFreeMap'),
-      style: 'https://tiles.openfreemap.org/styles/liberty',
-      available: true,
-    },
-    {
-      id: 'locationIqStreets',
-      title: t('mapLocationIqStreets'),
-      style: `https://tiles.locationiq.com/v3/streets/vector.json?key=${locationIqKey}`,
-      available: true,
-    },
-    {
-      id: 'locationIqDark',
-      title: t('mapLocationIqDark'),
-      style: `https://tiles.locationiq.com/v3/dark/vector.json?key=${locationIqKey}`,
-      available: true,
-    },
+   
     {
       id: 'osm',
       title: t('mapOsm'),

@@ -187,7 +187,7 @@ const UserPage = () => {
                 <InputLabel>{t('mapDefault')}</InputLabel>
                 <Select
                   label={t('mapDefault')}
-                  value={item.map || 'locationIqStreets'}
+                  value={item.map || 'openFreeMap'}
                   onChange={(e) => setItem({ ...item, map: e.target.value })}
                 >
                   {mapStyles.filter((style) => style.available).map((style) => (
@@ -213,7 +213,7 @@ const UserPage = () => {
                 <InputLabel>{t('settingsSpeedUnit')}</InputLabel>
                 <Select
                   label={t('settingsSpeedUnit')}
-                  value={(item.attributes && item.attributes.speedUnit) || 'kn'}
+                  value={(item.attributes && item.attributes.speedUnit) || 'kmh'}
                   onChange={(e) => setItem({ ...item, attributes: { ...item.attributes, speedUnit: e.target.value } })}
                 >
                   <MenuItem value="kn">{t('sharedKn')}</MenuItem>
