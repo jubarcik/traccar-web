@@ -4,6 +4,7 @@ const { reducer, actions } = createSlice({
   name: 'geofences',
   initialState: {
     items: {},
+
   },
   reducers: {
     refresh(state, action) {

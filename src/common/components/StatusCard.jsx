@@ -178,13 +178,12 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
 
 
 
-
-
   const handleActivateAnchor = (async () => {  // Função para Ativar a âncora (adiciona a geofence)
     try {
       const newGeofence = {
         name: `${device.name} - Âncora`,
         area: `CIRCLE (${position.latitude} ${position.longitude}, 50)`, // Círculo de 50 metros de raio
+        attributes:{"color":"red"},
       };
       const response = await fetch('/api/geofences', {
         method: 'POST',
@@ -200,13 +199,14 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
         const permissionResponse = await fetch('/api/permissions', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ deviceId: position.deviceId, geofenceId: geofence.id }),
+          body: JSON.stringify({ deviceId: device.id, geofenceId: geofence.id }),
         });
-
+       
         if (permissionResponse.ok) {
           setAnchorGeofenceId(geofence.id); // Armazena o ID da geofence de âncora
           showSnackbar('Âncora Ativada', 'Comando enviado com sucesso!', 'error');
           refreshGeofences();
+          refreshDevice();
         }
       }
     } catch (error) {
@@ -231,6 +231,7 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
         handleAnchorSendResume('engineResume');
         showSnackbar('Âncora Desativada', 'Comando enviado com sucesso!', 'info');
         refreshGeofences();
+        refreshDevice();
       }
     } catch (error) {
       showSnackbar('Aviso', 'Comando não enviado!', 'warning');
@@ -240,7 +241,19 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
   const refreshGeofences = useCatchCallback(async () => {
     const response = await fetch('/api/geofences');
     if (response.ok) {
+      
       dispatch(geofencesActions.refresh(await response.json()));
+
+    } else {
+      throw Error();
+    }
+  }, [dispatch]);
+
+  const refreshDevice = useCatchCallback(async () => {
+    const response = await fetch('/api/devices');
+    if (response.ok) {
+      
+      dispatch(devicesActions.refresh(await response.json()));
 
     } else {
       throw Error();
@@ -264,7 +277,7 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
         body: JSON.stringify({
           deviceId,
           type: command,
-        }), Positions
+        }),
       });
       if (!response.ok) {
         throw new Error('Falha ao enviar Comando');
@@ -335,6 +348,7 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
     const newItem = {
       name: `${device.name} - GeoFence`,
       area: `CIRCLE (${position.latitude} ${position.longitude}, 50)`,
+      attributes:{"color":"orange"},
     };
     const response = await fetch('/api/geofences', {
       method: 'POST',
