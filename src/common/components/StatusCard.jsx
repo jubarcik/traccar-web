@@ -205,8 +205,7 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
         if (permissionResponse.ok) {
           setAnchorGeofenceId(geofence.id); // Armazena o ID da geofence de âncora
           showSnackbar('Âncora Ativada', 'Comando enviado com sucesso!', 'error');
-          refreshGeofences();
-          refreshDevice();
+          refreshGeofences();      
         }
       }
     } catch (error) {
@@ -231,7 +230,6 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
         handleAnchorSendResume('engineResume');
         showSnackbar('Âncora Desativada', 'Comando enviado com sucesso!', 'info');
         refreshGeofences();
-        refreshDevice();
       }
     } catch (error) {
       showSnackbar('Aviso', 'Comando não enviado!', 'warning');
@@ -249,18 +247,7 @@ const StatusCard = ({ deviceId, position, onClose, disableActions, desktopPaddin
     }
   }, [dispatch]);
 
-  const refreshDevice = useCatchCallback(async () => {
-    const response = await fetch('/api/devices');
-    if (response.ok) {
-      
-      dispatch(devicesActions.refresh(await response.json()));
-
-    } else {
-      throw Error();
-    }
-  }, [dispatch]);
-
-
+  
   /** Final do bloco de funçoes da Âncora*/
 
 
